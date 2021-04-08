@@ -1,0 +1,96 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>TicketManagement.EventAPI</name>
+    </assembly>
+    <members>
+        <member name="T:TicketManagement.EventAPI.Controllers.EventController">
+            <summary>
+            Controller for all actions.
+            </summary>
+        </member>
+        <member name="M:TicketManagement.EventAPI.Controllers.EventController.#ctor(TicketManagement.EventAPI.Manager.EventManager)">
+            <summary>
+            Initializes a new instance of the <see cref="T:TicketManagement.EventAPI.Controllers.EventController"/> class.
+            </summary>
+            <param name="eventManager">Instance from DI.</param>
+        </member>
+        <member name="M:TicketManagement.EventAPI.Controllers.EventController.GetEvent(System.Int32)">
+            <summary>
+            Get Event by Id. AllowAnonymous.
+            </summary>
+            <param name="id">Id of needed Event.</param>
+            <returns>200 - returns Event. 400 - bad request.</returns>
+        </member>
+        <member name="M:TicketManagement.EventAPI.Controllers.EventController.GetSeats(System.Int32)">
+            <summary>
+            Gets all seats by event.
+            </summary>
+            <param name="id">Event Id.</param>
+            <returns>List of seats.</returns>
+        </member>
+        <member name="M:TicketManagement.EventAPI.Controllers.EventController.GetSeat(System.Int32)">
+            <summary>
+            Get selected Event seat.
+            </summary>
+            <param name="id">id of seat.</param>
+            <returns>200 - Ok.</returns>
+        </member>
+        <member name="M:TicketManagement.EventAPI.Controllers.EventController.GetArea(System.Int32)">
+            <summary>
+            Get selected Event area.
+            </summary>
+            <param name="id">id of area.</param>
+            <returns>200 - Ok.</returns>
+        </member>
+        <member name="M:TicketManagement.EventAPI.Controllers.EventController.GetPrices(System.Int32)">
+            <summary>
+            Get Areas with price of selected Event.
+            Only authorized users.
+            </summary>
+            <param name="id">Id of Event.</param>
+            <returns>List of EventArea.</returns>
+        </member>
+        <member name="M:TicketManagement.EventAPI.Controllers.EventController.GetAll">
+            <summary>
+            Gets all events from database.
+            </summary>
+            <returns>200 - list of events. 400 - bad request.</returns>
+        </member>
+        <member name="M:TicketManagement.EventAPI.Controllers.EventController.Insert(TicketManagement.DataAccess.Entities.EventData)">
+            <summary>
+            Adds new event.
+            </summary>
+            <param name="model">Event.</param>
+            <returns>Id of inserted Event.</returns>
+        </member>
+        <member name="M:TicketManagement.EventAPI.Controllers.EventController.Update(TicketManagement.DataAccess.Entities.EventData)">
+            <summary>
+            Update Event.
+            </summary>
+            <param name="model">Model of event.</param>
+            <returns>200 - Ok.</returns>
+        </member>
+        <member name="M:TicketManagement.EventAPI.Controllers.EventController.UpdatePrice(TicketManagement.DataAccess.Entities.EventArea)">
+            <summary>
+            Update selected area.
+            </summary>
+            <param name="model">Area with price for update.</param>
+            <returns>200 - Ok.</returns>
+        </member>
+        <member name="M:TicketManagement.EventAPI.Controllers.EventController.UpdateSeat(TicketManagement.DataAccess.Entities.EventSeat)">
+            <summary>
+            Update selected seat.
+            </summary>
+            <param name="model">Seat with state for update.</param>
+            <returns>200 - Ok.</returns>
+        </member>
+        <member name="M:TicketManagement.EventAPI.Controllers.EventController.Delete(System.Int32)">
+            <summary>
+            Delete selected Event by Id.
+            </summary>
+            <param name="id">Event by Id.</param>
+            <returns>200 - Ok.</returns>
+        </member>
+    </members>
+</doc>

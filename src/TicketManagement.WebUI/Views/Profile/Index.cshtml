@@ -1,0 +1,65 @@
+﻿@using TicketManagement.WebUI.Models.Profile
+@using TicketManagement.WebUI
+@using Microsoft.AspNetCore.Mvc.Localization
+
+@model ProfileViewModel
+@inject IViewLocalizer Localizer
+@inject IHtmlLocalizer<SharedResource> SharedLocalizer
+
+@{
+    ViewBag.Title = Localizer["Profile"];
+}
+<br />
+<div class="container">
+    <div class="form-group col-4">
+        @Html.LabelFor(m => m.Login, new { @class = "col-md-2 control-label" })
+        <hr />
+        <div class="col-md-10">
+            <h5> @Model.Login</h5>
+        </div>
+    </div>
+    <br />
+    <div class="form-group col-4">
+        @Html.LabelFor(m => m.FirstName, new { @class = "col-md-2 control-label" })
+        <hr />
+        <div class="col-md-10">
+            <h5> @Model.FirstName</h5>
+        </div>
+    </div>
+    <br />
+    <div class="form-group col-4">
+        @Html.LabelFor(m => m.SurName, new { @class = "col-md-2 control-label" })
+        <hr />
+        <div class="col-md-10">
+            <h5> @Model.SurName</h5>
+        </div>
+    </div>
+    <br />
+    <div class="form-group col-4">
+        @Html.LabelFor(m => m.Balance, new { @class = "col-md-2 control-label" })
+        <hr />
+        <div class="col-md-10">
+            <h5> @Model.Balance</h5>
+        </div>
+    </div>
+    <br />
+    <div class="form-group col-4">
+        @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
+        <hr />
+        <div class="col-md-10">
+            <h5> @Model.Email</h5>
+        </div>
+    </div>
+    <br />
+    <div class="form-group col-4">
+        @Html.LabelFor(m => m.Language, new { @class = "col-md-2 control-label" })
+        <hr />
+        <div class="col-md-10">
+            <h5> @Model.Language</h5>
+        </div>
+    </div>
+    <br />
+    <div class="col-md-offset-2 col-md-10">
+        <a href=@Url.Action("Edit", "Profile") class="btn btn-form"><span>@SharedLocalizer["Edit"]</span></a>
+    </div>
+</div>

@@ -1,0 +1,124 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>TicketManagement.PurchaseAPI</name>
+    </assembly>
+    <members>
+        <member name="T:TicketManagement.PurchaseAPI.Controllers.PurchaseController">
+            <summary>
+            Purchase Flow (API).
+            </summary>
+        </member>
+        <member name="M:TicketManagement.PurchaseAPI.Controllers.PurchaseController.GetOrders">
+            <summary>
+            Get all reserved and bought seats by user.
+            </summary>
+        </member>
+        <member name="M:TicketManagement.PurchaseAPI.Controllers.PurchaseController.GetOrder(System.Int32)">
+            <summary>
+            Get selected order.
+            </summary>
+            <param name="id">order.</param>
+        </member>
+        <member name="M:TicketManagement.PurchaseAPI.Controllers.PurchaseController.GetTransaction(System.Int32)">
+            <summary>
+            Get selected transaction.
+            </summary>
+            <param name="id">transaction.</param>
+        </member>
+        <member name="M:TicketManagement.PurchaseAPI.Controllers.PurchaseController.GetPaymentAsync(System.Int32)">
+            <summary>
+            Payment info of selected order.
+            </summary>
+            <param name="id">order.</param>
+        </member>
+        <member name="M:TicketManagement.PurchaseAPI.Controllers.PurchaseController.ReserveAsync(System.Int32)">
+            <summary>
+            Reserve selected seat to user.
+            </summary>
+            <param name="id">Seat.</param>
+        </member>
+        <member name="M:TicketManagement.PurchaseAPI.Controllers.PurchaseController.PaymentAsync(System.Int32)">
+            <summary>
+            Payment selected order.
+            </summary>
+            <param name="id">Order.</param>
+        </member>
+        <member name="T:TicketManagement.PurchaseAPI.Models.EventSeatModel">
+            <summary>
+            Model of EventSeat from EventApi.
+            </summary>
+        </member>
+        <member name="P:TicketManagement.PurchaseAPI.Models.PaymentModel.Id">
+            <summary>
+            Purchase Id.
+            </summary>
+        </member>
+        <member name="M:TicketManagement.PurchaseAPI.Services.EventApiService.GetSeatAsync(System.Int32,System.String)">
+            <summary>
+            Get seat from Api.
+            </summary>
+            <param name="id">Seat.</param>
+            <param name="token">Token.</param>
+            <returns>EventSeat.</returns>
+        </member>
+        <member name="M:TicketManagement.PurchaseAPI.Services.EventApiService.GetAreaAsync(System.Int32,System.String)">
+            <summary>
+            Get Area from Api.
+            </summary>
+            <param name="id">Area.</param>
+            <param name="token">Token.</param>
+        </member>
+        <member name="M:TicketManagement.PurchaseAPI.Services.EventApiService.GetEventAsync(System.Int32,System.String)">
+            <summary>
+            Get Event from Api.
+            </summary>
+            <param name="id">Event.</param>
+            <param name="token">Token.</param>
+        </member>
+        <member name="M:TicketManagement.PurchaseAPI.Services.EventApiService.UpdateSeatAsync(TicketManagement.PurchaseAPI.Models.EventSeatModel,System.String)">
+            <summary>
+            Update seat info after changing state.
+            </summary>
+            <param name="model">Seat.</param>
+            <param name="token">Token.</param>
+        </member>
+        <member name="T:TicketManagement.PurchaseAPI.Services.PurchaseService">
+            <summary>
+            Service for connect to purchase repository.
+            </summary>
+        </member>
+        <member name="M:TicketManagement.PurchaseAPI.Services.PurchaseService.#ctor(TicketManagement.DataAccess.Interfaces.IRepository{TicketManagement.DataAccess.Entities.Purchase})">
+            <summary>
+            Initializes a new instance of the <see cref="T:TicketManagement.PurchaseAPI.Services.PurchaseService"/> class.
+            </summary>
+            <param name="repository">Purchase repository.</param>
+        </member>
+        <member name="T:TicketManagement.PurchaseAPI.Services.TransactionService">
+            <summary>
+            Service for transact opertions with repository.
+            </summary>
+        </member>
+        <member name="M:TicketManagement.PurchaseAPI.Services.TransactionService.#ctor(TicketManagement.DataAccess.Interfaces.IRepository{TicketManagement.DataAccess.Entities.Transaction})">
+            <summary>
+            Initializes a new instance of the <see cref="T:TicketManagement.PurchaseAPI.Services.TransactionService"/> class.
+            </summary>
+            <param name="repository">Transaction repository.</param>
+        </member>
+        <member name="M:TicketManagement.PurchaseAPI.Services.UserApiService.GetUser(System.String,System.String)">
+            <summary>
+            Get user info.
+            </summary>
+            <param name="login">Login for getting info.</param>
+            <param name="token">Token.</param>
+            <returns>UserModel.</returns>
+        </member>
+        <member name="M:TicketManagement.PurchaseAPI.Services.UserApiService.UpdateBalance(TicketManagement.PurchaseAPI.Models.UserModel,System.String)">
+            <summary>
+            Update Balance after buying ticket.
+            </summary>
+            <param name="model">User model to api for changing.</param>
+            <param name="token">Token.</param>
+        </member>
+    </members>
+</doc>

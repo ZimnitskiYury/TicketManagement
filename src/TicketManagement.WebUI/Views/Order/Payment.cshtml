@@ -1,0 +1,32 @@
+﻿@model TicketManagement.WebUI.Models.Order.PaymentViewModel
+@using Microsoft.AspNetCore.Mvc.Localization
+@using TicketManagement.WebUI
+
+@inject IViewLocalizer Localizer
+@inject IHtmlLocalizer<SharedResource> SharedLocalizer
+
+@{ ViewBag.Title = Localizer["Payment"]; }
+
+<section class="s-single-product">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-md-7 single-shop-left">
+                @using (Html.BeginForm("Payment", "Order", null, FormMethod.Post, true, new { @class = "form-horizontal", role = "form" }))
+                {
+                    @Html.AntiForgeryToken()
+                    <h5 class="description-toggle">@Localizer["Event"]: @Model.EventName</h5>
+                    <h6 class="description-toggle">@Localizer["Area"]: @Model.EventAreaDescription</h6>
+                    <h6 class="description-toggle">@Localizer["Row"]: @Model.Row</h6>
+                    <h6 class="description-toggle">@Localizer["Seat"]: @Model.Number</h6>
+                    <h6 class="description-toggle">@Localizer["Price"]: @Model.Price.ToString("C", new System.Globalization.CultureInfo("en-Us"))</h6>
+                    <br />
+                    @Html.HiddenFor(m=>Model.Price)
+                    @Html.HiddenFor(m => Model.Id)
+                    <div class="col-md-offset-2 col-md-10">
+                        <button type="submit" id="login-submit" value="Login" class="btn btn-form"><span>@Localizer["Pay"]</span></button>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</section>

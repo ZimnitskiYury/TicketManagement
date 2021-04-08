@@ -1,0 +1,77 @@
+@using TicketManagement.WebUI.Models.Event
+@using Microsoft.AspNetCore.Mvc.Localization
+@using TicketManagement.WebUI
+
+@model EventDataViewModel
+@inject IViewLocalizer Localizer
+@inject IHtmlLocalizer<SharedResource> SharedLocalizer
+@{
+    ViewBag.Title = Localizer["CreateNew"];
+}
+
+<div class="login-form">
+    <div class="container">
+        <div class="col-md-6">
+            <section>
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()
+                    <h5>@Localizer["NewEvent"]</h5>
+                    <hr />
+                    <br />
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <div>
+                        @Html.LabelFor(m => m.Name, new { @class = "col-md-2 control-label" })
+                        <div class="col-md-10">
+                            @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.Name, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <br />
+                    <div>
+                        @Html.LabelFor(m => m.Description, new { @class = "col-md-2 control-label" })
+                        <div class="col-md-10">
+                            @Html.TextBoxFor(m => m.Description, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.Description, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <br />
+                    <div>
+                        @Html.LabelFor(m => m.Category, new { @class = "col-md-2 control-label" })
+                        <div class="col-md-10">
+                            @Html.DropDownListFor(m => m.Category, Html.GetEnumSelectList<Category>(), new { @clss = "dropdown" })
+                            @Html.ValidationMessageFor(m => m.Category, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <br />
+                    <div>
+                        @Html.LabelFor(m => m.LayoutId, new { @class = "col-md-2 control-label" })
+                        <div class="col-md-10">
+                            @Html.TextBoxFor(m => m.LayoutId, new { @class = "form-control", @type = "number" })
+                            @Html.ValidationMessageFor(m => m.LayoutId, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <br />
+                    <div>
+                        @Html.LabelFor(m => m.StartDateTime, new { @class = "col-md-2 control-label" })
+                        <div class="col-md-10">
+                            @Html.TextBoxFor(m => m.StartDateTime, "", new { @type = "datetime-local", @id = "datetimepicker1" })
+                        </div>
+                    </div><br />
+                    <div>
+                        @Html.LabelFor(m => m.EndDateTime, new { @class = "col-md-2 control-label" })
+                        <div class="col-md-10">
+                            @Html.TextBoxFor(m => m.EndDateTime, "", new { @type = "datetime-local", @id = "datetimepicker2" })
+                        </div>
+                    </div>
+                    <br />
+                    <div>
+                        <div class="col-md-offset-2 col-md-10">
+                            <button type="submit" id="create-event-submit" value=@Localizer["Create"] class="btn btn-form"><span>@Localizer["Submit"]</span></button>
+                        </div>
+                    </div>
+                }
+            </section>
+        </div>
+    </div>
+</div>

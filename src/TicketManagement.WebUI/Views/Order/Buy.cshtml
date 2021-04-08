@@ -1,0 +1,49 @@
+﻿@using TicketManagement.WebUI.Models.Event
+@using Microsoft.AspNetCore.Mvc.Localization
+@using TicketManagement.WebUI
+
+@model List<EventSeatViewModel>
+@inject IViewLocalizer Localizer
+@inject IHtmlLocalizer<SharedResource> SharedLocalizer
+
+@{ ViewBag.Title = Localizer["OrderTickets"]; }
+
+<div class="s-single-product">
+    <div class="container">
+        <div class="col-md-6 single-shop-left">
+            <h5>@Localizer["Available"]</h5>
+            <div class="frame-size">
+                @using (Html.BeginForm())
+                {
+                    int? i = null;
+                    foreach (var seat in Model.Where(x => x.State == StateSeat.Free))
+                    {
+                        if (i == null)
+                        {
+                            <br /><div><h5>@seat.EventAreaDescription - @Localizer["PriceForSeat"]: @seat.Price</h5></div><br />
+                            await Html.RenderPartialAsync("_GetSeat", seat);
+                            i = seat.EventAreaId;
+                        }
+                        else if (i == seat.EventAreaId)
+                        {
+                            await Html.RenderPartialAsync("_GetSeat", seat);
+                        }
+                        else
+                        {
+                            <br /><div><h5>@seat.EventAreaDescription - @Localizer["PriceForSeat"]: @seat.Price</h5></div><br />
+                            await Html.RenderPartialAsync("_GetSeat", seat);
+                            i = seat.EventAreaId;
+                        }
+                    }
+                    <br />
+                    <h5>
+                        @await Component.InvokeAsync("GetDiscountComponent")
+                    </h5>
+                    <br />
+                    <div class="col-md-offset-2 col-md-10">
+                        <button type="submit" value=Create class="btn btn-form"><span>@SharedLocalizer["Submit"]</span></button>
+                    </div>}
+            </div>
+        </div>
+    </div>
+</div>

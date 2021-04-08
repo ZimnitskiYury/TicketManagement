@@ -1,0 +1,5 @@
+<Project>
+  <PropertyGroup>
+    <CodeAnalysisRuleSet>$(MSBuildThisFileDirectory)EPAM.Trainings.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+</Project>

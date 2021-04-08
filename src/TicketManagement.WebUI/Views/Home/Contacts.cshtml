@@ -1,0 +1,80 @@
+﻿@using TicketManagement.WebUI
+@using Microsoft.AspNetCore.Mvc.Localization
+
+@inject IViewLocalizer Localizer
+@inject IHtmlLocalizer<SharedResource> SharedLocalizer
+
+@{
+    ViewBag.Title = Localizer["Contacts"];
+}
+<!--================= CONTACTS-TOP =================-->
+<section class="contacts-top">
+    <div class="container">
+        <div class="row contact-top-cover">
+            <div class="col-12 col-lg-6 contact-img">
+                <img src="~/img/cont-img-1.jpg" alt="img">
+            </div>
+            <div class="col-12 col-lg-6 contact-info">
+                <h2 class="title">@Localizer["ContactInfo"]</h2>
+                <p>@Localizer["Contact2"]</p>
+                <p>
+                    @Localizer["Contact1"]
+                </p>
+                <ul class="social-list">
+                    <li><a target="_blank" href="https://www.facebook.com/"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+                    <li><a target="_blank" href="https://twitter.com/"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+                    <li><a target="_blank" href="https://www.instagram.com/"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
+                    <li><a target="_blank" href="https://www.youtube.com"><i class="fa fa-youtube-play" aria-hidden="true"></i></a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+<!--================ CONTACTS-TOP END ================-->
+<!--================ CONTACTS-BLOCK ================-->
+<section class="s-contacts-block">
+    <div class="container">
+        <div class="row contacts-block">
+            <div class="col-12 col-md-4">
+                <div class="contact-block-item">
+                    <div class="contact-block-left">
+                        <img src="~/img/cont-icon-1.svg" alt="img">
+                        <h6>@Localizer["NeedHelp"]</h6>
+                    </div>
+                    <div class="contact-block-right">
+                        <ul>
+                            <li><a href="tel:@SharedLocalizer["Telephone"].Value">@SharedLocalizer["Telephone"]</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-4">
+                <div class="contact-block-item">
+                    <div class="contact-block-left">
+                        <img src="~/img/cont-icon-2.svg" alt="img">
+                        <h6>@Localizer["Questions"]</h6>
+                    </div>
+                    <div class="contact-block-right">
+                        <ul>
+                            <li><a href="mailto:@SharedLocalizer["E-mail"].Value">@SharedLocalizer["E-mail"]</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-4">
+                <div class="contact-block-item">
+                    <div class="contact-block-left">
+                        <img src="~/img/cont-icon-3.svg" alt="img">
+                        <h6>@Localizer["Address"]</h6>
+                    </div>
+                    <div class="contact-block-right">
+                        <ul>
+                            <li><a class="item-scroll" href="#map">@Localizer["AddressMap"]</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--============== CONTACTS-BLOCK END ==============-->

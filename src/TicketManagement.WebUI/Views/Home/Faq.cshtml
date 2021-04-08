@@ -1,0 +1,33 @@
+﻿@using TicketManagement.WebUI
+@using Microsoft.AspNetCore.Mvc.Localization
+
+@inject IViewLocalizer Localizer
+@inject IHtmlLocalizer<SharedResource> SharedLocalizer
+
+@{
+    ViewBag.Title = Localizer["FAQ"];
+}
+<section class="contacts-top">
+    <div class="container">
+        <div class="row contact-top-cover">
+            <div class="col-12 col-lg-6 contact-img">
+                <img src="~/img/cont-img-1.jpg" alt="img">
+            </div>
+            <div class="col-12 col-lg-6 contact-info">
+                <h2 class="title">@Localizer["Questions"]</h2>
+                <hr />
+                <p><b>@Localizer["Question"]</b></p>
+                <br />
+                <p>
+                    @Localizer["Answer"]
+                </p>
+                <ul class="social-list">
+                    <li><a target="_blank" href="https://www.facebook.com/"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+                    <li><a target="_blank" href="https://twitter.com/"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+                    <li><a target="_blank" href="https://www.instagram.com/"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
+                    <li><a target="_blank" href="https://www.youtube.com"><i class="fa fa-youtube-play" aria-hidden="true"></i></a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>

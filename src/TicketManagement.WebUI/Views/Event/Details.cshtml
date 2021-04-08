@@ -1,0 +1,48 @@
+﻿@using TicketManagement.WebUI.Models.Event
+@using Microsoft.AspNetCore.Mvc.Localization
+@using TicketManagement.WebUI
+
+@model EventDataViewModel
+@inject IViewLocalizer Localizer
+@inject IHtmlLocalizer<SharedResource> SharedLocalizer
+
+@{ ViewBag.Title = Model.Name;}
+<!-- ============== S-SINGLE-PRODUCT ============== -->
+<section class="s-single-product">
+    <div class="container">
+        <div class="row">
+            <div class="col-8"></div>
+            @if (User.IsInRole("Event") || User.IsInRole("Venue") || User.IsInRole("Administrator"))
+            {
+<a href=@Url.Action("Edit", "Event", new { id = Model.Id }) align="right" class="btn"><span>@Localizer["Edit"]</span></a>
+                <div class=""></div>
+                                <a href=@Url.Action("Delete", "Event", new { id = Model.Id }) class="btn"><span>@Localizer["Delete"]</span></a>}
+        </div>
+        <br />
+        <div class="row">
+            <div class="col-12 col-md-5">
+                <!--===== SLIDER-SINGLE-FOR =====-->
+                <div class="slider-single-for">
+                    <div class="slide-single-for">
+                        <a class="single-for-img">
+                            <img src="~/img/single-slider-1.jpg" alt="img">
+                        </a>
+                    </div>
+                </div>
+                <!--=== SLIDER-SINGLE-FOR END ===-->
+            </div>
+            <div class="col-12 col-md-7 single-shop-left">
+                <h2 class="title">@Model.Name</h2>
+                <h5 class="description-toggle">@Model.Description</h5>
+                <h6 class="description-toggle">@Model.Category</h6>
+                <br />
+                @await Component.InvokeAsync("GetAreaComponent", new { id = Model.Id })
+                <div class="single-btn-cover">
+                    <a href=@Url.Action("Buy", "Order", new { id = Model.Id}) class="btn btn-buy-now"><span>@SharedLocalizer["Buy"]</span></a>
+                    <a href="#" class="btn btn-wishlist"><span>add to cart</span></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- ============ S-SINGLE-PRODUCT END ============ -->

@@ -1,0 +1,26 @@
+﻿@using TicketManagement.WebUI.Models.Event
+@using Microsoft.AspNetCore.Mvc.Localization
+@using TicketManagement.WebUI
+@model IEnumerable<TicketManagement.WebUI.Models.Cart.CartViewModel>
+@inject IViewLocalizer Localizer
+@inject IHtmlLocalizer<SharedResource> SharedLocalizer
+
+
+@foreach (var cart in Model.Where(x => x.EventSeat.State == StateSeat.Bought))
+{
+<div class="col-sm-6 col-lg-3">
+    <div class="product-item">
+        <a href=@Url.Action("Details", "Event" , new { id=cart.EventData.Id }) class="product-img"><img class="lazy" src="../img/placeholder-all.png" data-src="../img/prod-9.png" alt="product"></a>
+        <div class="product-item-cover">
+            <h6 class="prod-title"><a href=@Url.Action("Details", "Event" , new { id=cart.EventData.Id })>@cart.EventData.Name</a></h6>
+            <h6 class="prod-title">@Localizer["Row"]: @cart.EventSeat.Row <br />@Localizer["Number"]: @cart.EventSeat.Number</h6>
+            <a href=@Url.Action("Details", "Event" , new { id=cart.EventData.Id}) class="btn"><span>@Localizer["Info"]</span></a>
+        </div>
+        <div class="prod-info">
+            <ul class="prod-list">
+                <li>@SharedLocalizer["DateBegin"]: <span>@cart.EventData.StartDateTime</span></li>
+                <li>@SharedLocalizer["DateEnd"]: <span>@cart.EventData.EndDateTime</span></li>
+            </ul>
+        </div>
+    </div>
+</div>}

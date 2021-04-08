@@ -1,0 +1,49 @@
+﻿@using TicketManagement.WebUI.Models.Event
+@using Microsoft.AspNetCore.Mvc.Localization
+@using TicketManagement.WebUI
+
+@model IEnumerable<EventDataViewModel>
+@inject IViewLocalizer Localizer
+@inject IHtmlLocalizer<SharedResource> SharedLocalizer
+
+@{ ViewBag.Title = @ViewBag.Category; }
+<!--=================== SHOP BEGIN ===================-->
+<section class="s-shop">
+    <div class="container">
+        <div class="col-12 shop-cover">
+            <div class="shop-product-cover">
+                <div class="row">
+                    <h3 class="title col-6">
+                        @Localizer["EventsBy"]
+                    </h3><div class="col-4"></div>
+                    @if (User.IsInRole("Event"))
+                    {
+        <a href=@Url.Action("Create", "Event", null) class="btn"><span>@Localizer["Create"]</span></a>}
+                </div>
+                <div class="row product-cover block">
+                    @foreach (var ev in Model)
+                    {
+                <div class="col-sm-6 col-lg-3">
+                    <div class="product-item">
+                        <ul class="product-icon-top">
+                            <li><a href="#"><i class="fa fa-heart" aria-hidden="true"></i></a></li>
+                        </ul>
+                        <a href=@Url.Action("Details", "Event", new { id = ev.Id }) class="product-img"><img class="lazy" src="~/img/placeholder-all.png" data-src="../img/prod-9.png" alt="product"></a>
+                        <div class="product-item-cover">
+                            <h6 class="prod-title"><a href=@Url.Action("Details", "Event", new { id = ev.Id })>@ev.Name <br>@ev.Description</a></h6>
+                            <a href=@Url.Action("Details", "Event", new { id = ev.Id }) class="btn"><span>@SharedLocalizer["Buy"]</span></a>
+                        </div>
+                        <div class="prod-info">
+                            <ul class="prod-list">
+                                <li>@SharedLocalizer["DateBegin"]: <span>@ev.StartDateTime</span></li>
+                                <li>@SharedLocalizer["DateEnd"]: <span>@ev.EndDateTime</span></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>      }
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--=================== SHOP END ===================-->

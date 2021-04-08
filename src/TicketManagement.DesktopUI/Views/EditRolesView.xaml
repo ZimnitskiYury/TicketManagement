@@ -1,0 +1,27 @@
+﻿<UserControl x:Class="TicketManagement.DesktopUI.Views.EditRolesView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:prism="http://prismlibrary.com/"             
+             prism:ViewModelLocator.AutoWireViewModel="True"
+             Height="240" Width="300">
+    <Grid>
+        <DockPanel>
+            <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="5">
+                <Button Command="{Binding CloseDialogCommand}" CommandParameter="true" Content="Change Roles" Margin="10" Style="{StaticResource MaterialDesignRaisedButton}"/>
+                <Button Command="{Binding CloseDialogCommand}" CommandParameter="false" Content="Cancel" Margin="10" Style="{StaticResource MaterialDesignRaisedAccentButton}"/>
+            </StackPanel>
+            <StackPanel DockPanel.Dock="Top" Margin="10" HorizontalAlignment="Center">
+                <ItemsControl ItemsSource="{Binding Roles}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <CheckBox Margin="5" FontSize="14" FontWeight="Medium" Content="{Binding Path=Name}" IsChecked="{Binding Path=IsSelected, UpdateSourceTrigger=PropertyChanged}" />
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+
+            </StackPanel>
+        </DockPanel>
+    </Grid>
+</UserControl>
+

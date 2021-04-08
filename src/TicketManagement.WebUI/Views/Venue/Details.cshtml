@@ -1,0 +1,27 @@
+﻿@model TicketManagement.WebUI.Models.Venue.VenueViewModel
+
+@{ ViewBag.Title = Model.Description;}
+<!-- ============== S-SINGLE-PRODUCT ============== -->
+<section class="s-single-product">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-md-5">
+                <!--===== SLIDER-SINGLE-FOR =====-->
+                <div class="slider-single-for">
+                    <div class="slide-single-for">
+                        <a class="single-for-img">
+                            <img src="../img/single-slider-1.jpg" alt="img">
+                        </a>
+                    </div>
+                </div>
+                <!--=== SLIDER-SINGLE-FOR END ===-->
+            </div>
+            <div class="col-12 col-md-7 single-shop-left">
+                <h2 class="title">@Model.Description</h2>
+                <h5 class="description-toggle">@Model.Address</h5>
+                <h6 class="description-toggle">@Model.Phone</h6>
+                <br />
+            </div>
+        </div>
+    </div>
+</section>

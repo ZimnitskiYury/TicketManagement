@@ -1,0 +1,45 @@
+﻿<UserControl x:Class="TicketManagement.DesktopUI.Views.AddEventView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:syncfusion="http://schemas.syncfusion.com/wpf"
+             xmlns:prism="http://prismlibrary.com/"             
+             prism:ViewModelLocator.AutoWireViewModel="True"            
+             Height="500" Width="460">
+    <Grid>
+        <DockPanel>
+            <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="5">
+                <Button Command="{Binding CloseDialogCommand}" CommandParameter="true" Content="Save Changes" Margin="10" Style="{StaticResource MaterialDesignRaisedButton}"/>
+                <Button Command="{Binding CloseDialogCommand}" CommandParameter="false" Content="Discard" Margin="10" Style="{StaticResource MaterialDesignRaisedAccentButton}"/>
+            </StackPanel>
+            <StackPanel Margin="10" HorizontalAlignment="Center">
+                <TextBox Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}" materialDesign:HintAssist.Hint="Name of event" Width="380" Margin="20"/>
+
+                <TextBox Text="{Binding Description, UpdateSourceTrigger=PropertyChanged}"  materialDesign:HintAssist.Hint="Description of event" Width="380" Margin="20"/>
+
+                <ComboBox ItemsSource="{Binding CategoryList}" DisplayMemberPath="Value" SelectedValuePath="Key" SelectedValue="{Binding Category, UpdateSourceTrigger=PropertyChanged}" materialDesign:HintAssist.Hint="Category" Width="380" Margin="20"/>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" Margin="0,20">
+                    <Label Content="LayoutId" Width="200" VerticalAlignment="Center" Margin="20,0"/>
+                    <TextBox Text="{Binding LayoutId, UpdateSourceTrigger=PropertyChanged}" 
+                             materialDesign:HintAssist.Hint="LayoutId" 
+                             Width="140" Margin="20"
+                             HorizontalAlignment="Stretch"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
+                    <TextBlock Text="Start Date of Event" VerticalAlignment="Center" Margin="20,0"/>
+                    <syncfusion:DateTimeEdit Pattern="FullDateTime"
+                                         DateTime="{Binding StartDate, Mode=TwoWay}"
+                                         Width="260"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" Margin="0,20">
+                    <TextBlock Width="100" Text="End Date of Event" VerticalAlignment="Center" Margin="20,0"/>
+                    <syncfusion:DateTimeEdit x:Name="dateTimeEnd"
+                                         Pattern="FullDateTime"
+                                         DateTime="{Binding EndDate, Mode=TwoWay}"
+                                         Width="260"/>
+                </StackPanel>
+            </StackPanel>
+        </DockPanel>
+
+    </Grid>
+</UserControl>

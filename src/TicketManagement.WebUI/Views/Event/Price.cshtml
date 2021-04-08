@@ -1,0 +1,51 @@
+﻿@using TicketManagement.WebUI.Models.Event
+@using Microsoft.AspNetCore.Mvc.Localization
+@using TicketManagement.WebUI
+
+@model List<EventAreaViewModel>
+@inject IViewLocalizer Localizer
+@inject IHtmlLocalizer<SharedResource> SharedLocalizer
+@{
+    ViewBag.Title = Localizer["Prices"];
+}
+
+<div class="login-form">
+    <div class="container">
+        <div class="col-md-6">
+            <section>
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()
+                    <h5>@Localizer["ChangePrice"]</h5>
+                    <hr />
+                    <br />
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <div>
+
+                        @for (int i = 0; i < Model.Count(); i++)
+                        {
+                            @Html.HiddenFor(mod => mod[i].Id)
+                            @Html.HiddenFor(mod => mod[i].Description)
+                            @Html.HiddenFor(mod => mod[i].CoordX)
+                            @Html.HiddenFor(mod => mod[i].CoordY)
+                            @Html.HiddenFor(mod => mod[i].EventId)
+                            @Html.Label(Model[i].Description, Model[i].Description, new { @class = "col-md-2 control-label" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(mod => mod[i].Price, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(mod => mod[i].Price, "", new { @class = "text-danger" })
+                                <br />
+                            </div>
+                        }
+
+                    </div>
+                    <br />
+                    <div>
+                        <div class="col-md-offset-2 col-md-10">
+                            <button type="submit" id="change-prices" value="Fix Prices" class="btn btn-form"><span>@SharedLocalizer["Submit"]</span></button>
+                        </div>
+                    </div>
+                }
+            </section>
+        </div>
+    </div>
+</div>

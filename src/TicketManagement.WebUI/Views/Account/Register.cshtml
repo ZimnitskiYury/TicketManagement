@@ -1,0 +1,90 @@
+﻿@model TicketManagement.WebUI.Models.Account.RegisterViewModel
+@using TicketManagement.WebUI
+@using Microsoft.AspNetCore.Mvc.Localization
+
+@inject IViewLocalizer Localizer
+@inject IHtmlLocalizer<SharedResource> SharedLocalizer
+
+@{
+    ViewBag.Title = SharedLocalizer["Register"];
+    ViewBag.Languages = new List<SelectListItem>
+                        {
+                            new SelectListItem {Text = "Russian", Value = "ru"},
+                            new SelectListItem {Text = "English", Value = "en"},
+                            new SelectListItem {Text = "Belarussian", Value = "be"},
+                        };
+}
+
+<div class="login-form">
+    <div class="container">
+        @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal col-6", role = "form" }))
+        {
+            @Html.AntiForgeryToken()
+            <h4>@Localizer["NewUser"]</h4>
+            <hr />
+            <br />
+            @Html.ValidationSummary("", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.LabelFor(m => m.Login, new { @class = "col-md-2 control-label" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(m => m.Login, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.Login)
+                </div>
+            </div>
+            <br />
+            <div class="form-group">
+                @Html.LabelFor(m => m.FirstName, new { @class = "col-md-2 control-label" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.FirstName)
+                </div>
+            </div>
+            <br />
+            <div class="form-group">
+                @Html.LabelFor(m => m.SurName, new { @class = "col-md-2 control-label" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(m => m.SurName, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.SurName)
+                </div>
+            </div>
+            <br />
+            <div class="form-group">
+                @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.Email)
+                </div>
+            </div>
+            <br />
+            <div class="form-group">
+                @Html.LabelFor(m => m.Language, new { @class = "col-md-2 control-label" })
+                <div class="col-md-10">
+                    @Html.DropDownListFor(m => m.Language, new SelectList(ViewBag.Languages, "Value", "Text"), new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.Language)
+                </div>
+            </div>
+            <br />
+            <div class="form-group">
+                @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(m => m.Password, new { @class = "form-control password" })
+                    @Html.ValidationMessageFor(m => m.Password)
+                </div>
+            </div>
+            <br />
+            <div class="form-group">
+                @Html.LabelFor(m => m.ConfirmPassword, new { @class = "col-md-2 control-label" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(m => m.ConfirmPassword, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.ConfirmPassword)
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <br />
+                    <button type="submit" class="btn btn-form" value="Register"><span>@SharedLocalizer["Register"]</span></button>
+                </div>
+            </div>
+        }
+    </div>
+</div>

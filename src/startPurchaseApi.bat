@@ -1,0 +1,1 @@
+start "PurchaseAPI" Powershell.exe dotnet run --project ./TicketManagement.PurchaseAPI/TicketManagement.PurchaseAPI.csproj

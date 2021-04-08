@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>TicketManagement.VenueAPI</name>
+    </assembly>
+    <members>
+        <member name="M:TicketManagement.VenueAPI.Controllers.VenueController.GetVenue(System.Int32)">
+            <summary>
+            Get venue by id from base.
+            </summary>
+            <param name="id">Venue ID.</param>
+            <returns>Ok - 200 and VenueModel. 400 - BadRequest.</returns>
+        </member>
+        <member name="M:TicketManagement.VenueAPI.Controllers.VenueController.GetAll">
+            <summary>
+            Get All venues from database.
+            </summary>
+            <returns>List of Venues.</returns>
+        </member>
+        <member name="M:TicketManagement.VenueAPI.Controllers.VenueController.Insert(TicketManagement.DataAccess.Entities.Venue)">
+            <summary>
+            Insert new Venue into database. Roles needed - Venue or Administrator.
+            </summary>
+            <param name="model">VenueModel.</param>
+            <returns>Ok - 200 + id of inserted model.</returns>
+        </member>
+        <member name="M:TicketManagement.VenueAPI.Controllers.VenueController.Update(TicketManagement.DataAccess.Entities.Venue)">
+            <summary>
+            Update Venue into database. Roles needed - Venue or Administrator.
+            </summary>
+            <param name="model">VenueModel.</param>
+            <returns>Ok - 200.</returns>
+        </member>
+        <member name="M:TicketManagement.VenueAPI.Controllers.VenueController.Delete(System.Int32)">
+            <summary>
+            Delete Venue from database. Roles needed - Venue or Administrator.
+            </summary>
+            <param name="id">VenueModel.</param>
+            <returns>Ok - 200.</returns>
+        </member>
+    </members>
+</doc>

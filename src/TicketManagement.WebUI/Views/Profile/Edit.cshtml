@@ -1,0 +1,74 @@
+﻿@using TicketManagement.WebUI.Models.Profile
+@using TicketManagement.WebUI
+@using Microsoft.AspNetCore.Mvc.Localization
+
+@model ProfileViewModel
+@inject IViewLocalizer Localizer
+@inject IHtmlLocalizer<SharedResource> SharedLocalizer
+
+@{
+    ViewBag.Title = Localizer["EditProfile"];
+    ViewBag.languages = new List<SelectListItem> { new SelectListItem { Text = "Russian", Value = "ru-RU" },
+        new SelectListItem { Text = "English", Value = "en-US" },
+        new SelectListItem { Text = "Belarussian", Value = "be-BY" }, };
+}
+
+<div class="login-form">
+    <div class="container">
+        <div class="col-md-6">
+            <section>
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()
+                    <h5>@SharedLocalizer["Edit"]</h5>
+                    <hr />
+                    <br />
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    @Html.HiddenFor(m=>m.Id)
+                    <div>
+                        @Html.LabelFor(m => m.Login, new { @class = "col-md-2 control-label" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(m => m.Login, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.Login, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <br />
+                    <div>
+                        @Html.LabelFor(m => m.FirstName, new { @class = "col-md-2 control-label" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(m => m.FirstName, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.FirstName, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <br />
+                    <div>
+                        @Html.LabelFor(m => m.SurName, new { @class = "col-md-2 control-label" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(m => m.SurName, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.SurName, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <br />
+                    <div>
+                        @Html.LabelFor(m => m.Language, new { @class = "col-md-2 control-label" })
+                        <div class="col-md-10">
+                            @Html.DropDownList("Language", new SelectList(ViewBag.languages, "Value", "Text"))
+                        </div>
+                    </div>
+                    <div>
+                        @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(m => m.Email, new { @class = "form-control" })
+                        </div>
+                    </div>
+                    <br />
+                    <div>
+                        <div class="col-md-offset-2 col-md-10">
+                            <button type="submit" value="Save" class="btn btn-form"><span>@SharedLocalizer["Submit"]</span></button>
+                        </div>
+                    </div>
+                }
+            </section>
+        </div>
+    </div>
+</div>

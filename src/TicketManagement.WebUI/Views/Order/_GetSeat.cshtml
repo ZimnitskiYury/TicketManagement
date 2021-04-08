@@ -1,0 +1,11 @@
+﻿@using Microsoft.AspNetCore.Mvc.Localization
+@using TicketManagement.WebUI
+
+@inject IViewLocalizer Localizer
+@inject IHtmlLocalizer<SharedResource> SharedLocalizer
+
+@model TicketManagement.WebUI.Models.Event.EventSeatViewModel
+
+<input type="checkbox" name="CheckedSeats" value=@Model.Id />@Localizer["Number"] : @Model.Number / @Localizer["Row"]: @Model.Row
+<br />
+

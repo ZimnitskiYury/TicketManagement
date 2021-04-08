@@ -1,0 +1,40 @@
+﻿@using TicketManagement.WebUI.Models.Venue
+@using TicketManagement.WebUI
+@using Microsoft.AspNetCore.Mvc.Localization
+@model List<VenueViewModel>
+@inject IViewLocalizer Localizer
+@inject IHtmlLocalizer<SharedResource> SharedLocalizer
+<!--=================== SHOP BEGIN ===================-->
+<div class="s-top-sale">
+    <div class="container">
+        <div class="row">
+            <h3 class="title col-6">
+                Venues of our services
+            </h3>
+        </div>            <hr />
+        <div class="row product-cover">
+            @foreach (var ven in Model)
+            {
+                <div class="col-sm-6 col-lg-3">
+                    <div class="product-item">
+                        <ul class="product-icon-top">
+                            <li><a href="#"><i class="fa fa-heart" aria-hidden="true"></i></a></li>
+                        </ul>
+                        <a href=@Url.Action("Details", "Venue", new { id = ven.Id }) class="product-img"><img class="lazy" src="~/img/placeholder-all.png" data-src="~/img/prod-9.png" alt="product"></a>
+                        <div class="product-item-cover">
+                            <h6 class="prod-title"><a href=@Url.Action("Details", "Venue", new { id = ven.Id })>@ven.Description</a></h6>
+                            <a href=@Url.Action("Details", "Venue", new { id = ven.Id }) class="btn"><span>@SharedLocalizer["Details"]</span></a>
+                        </div>
+                        <div class="prod-info">
+                            <ul class="prod-list">
+                                <li>Address: <span>@ven.Address</span></li>
+                                <li>Phone: <span>@ven.Phone</span></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+    </div>
+    <!--=================== SHOP END ===================-->

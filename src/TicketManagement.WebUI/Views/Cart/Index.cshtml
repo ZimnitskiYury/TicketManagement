@@ -1,0 +1,23 @@
+﻿@using Microsoft.AspNetCore.Mvc.Localization
+@using TicketManagement.WebUI
+
+@inject IViewLocalizer Localizer
+@inject IHtmlLocalizer<SharedResource> SharedLocalizer
+
+@model IEnumerable<TicketManagement.WebUI.Models.Cart.CartViewModel>
+@{ ViewBag.Title = Localizer["Cart"]; }
+
+<div class="s-top-sale">
+    <div class="container">
+        <h3 class="title">@Localizer["YourTickets"]</h3>
+        <br />
+        <h5 class="title">@Localizer["Reserved"]</h5>
+        <div class="row product-cover">
+            @{await Html.RenderPartialAsync("_GetReserved", Model);}
+        </div>
+        <h5 class="title">@Localizer["Bought"]</h5>
+        <div class="row product-cover">
+            @{await Html.RenderPartialAsync("_GetBought", Model);}
+        </div>
+    </div>
+</div>

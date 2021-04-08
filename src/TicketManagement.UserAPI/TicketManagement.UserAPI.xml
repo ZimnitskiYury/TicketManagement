@@ -1,0 +1,221 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>TicketManagement.UserAPI</name>
+    </assembly>
+    <members>
+        <member name="T:TicketManagement.UserAPI.Controllers.UsersController">
+            <summary>
+            Controller for all actions with db of users.
+            </summary>
+        </member>
+        <member name="M:TicketManagement.UserAPI.Controllers.UsersController.#ctor(Microsoft.AspNetCore.Identity.RoleManager{Microsoft.AspNetCore.Identity.IdentityRole},Microsoft.AspNetCore.Identity.SignInManager{TicketManagement.UserAPI.DataAccess.User},Microsoft.AspNetCore.Identity.UserManager{TicketManagement.UserAPI.DataAccess.User},TicketManagement.UserAPI.Services.JwtTokenService)">
+            <summary>
+            Initializes a new instance of the <see cref="T:TicketManagement.UserAPI.Controllers.UsersController"/> class.
+            </summary>
+            <param name="roleManager">RoleManager of Identity.</param>
+            <param name="signInManager">SignInManager of Identity.</param>
+            <param name="userManager">UserManager of Identity.</param>
+            <param name="jwtTokenService">JwtTocken service for create tokens.</param>
+        </member>
+        <member name="M:TicketManagement.UserAPI.Controllers.UsersController.Register(TicketManagement.UserAPI.Models.RegisterModel)">
+            <summary>
+            Register new user.
+            </summary>
+            <param name="model">Model contains Username, e-mail, language and password.</param>
+            <returns>jwt-token.</returns>
+        </member>
+        <member name="M:TicketManagement.UserAPI.Controllers.UsersController.Login(TicketManagement.UserAPI.Models.LoginModel)">
+            <summary>
+            Login into API and get token.
+            </summary>
+            <param name="model">Model from UI.</param>
+        </member>
+        <member name="M:TicketManagement.UserAPI.Controllers.UsersController.GetRoles">
+            <summary>
+            All available Roles. Only for Admin.
+            </summary>
+        </member>
+        <member name="M:TicketManagement.UserAPI.Controllers.UsersController.AddRoleToUserAsync(System.String,System.String)">
+            <summary>
+            Add role to user. Only for Admin.
+            </summary>
+        </member>
+        <member name="M:TicketManagement.UserAPI.Controllers.UsersController.DeleteRoleFromUserAsync(System.String,System.String)">
+            <summary>
+            Delete role from user. Only for Admin.
+            </summary>
+        </member>
+        <member name="M:TicketManagement.UserAPI.Controllers.UsersController.Profile(System.String)">
+            <summary>
+            Get info of user.
+            </summary>
+        </member>
+        <member name="M:TicketManagement.UserAPI.Controllers.UsersController.Edit(TicketManagement.UserAPI.Models.ProfileModel)">
+            <summary>
+            Edit user.
+            </summary>
+            <param name="user">User info for changes.</param>
+        </member>
+        <member name="M:TicketManagement.UserAPI.Controllers.UsersController.Validate(System.String)">
+            <summary>
+            Validate jwt-token.
+            </summary>
+            <param name="token">token for validate.</param>
+        </member>
+        <member name="M:TicketManagement.UserAPI.Controllers.UsersController.GetAll">
+            <summary>
+            Get all user's profile.
+            </summary>
+        </member>
+        <member name="M:TicketManagement.UserAPI.Controllers.UsersController.DeleteAsync(System.String)">
+            <summary>
+            Delete selected User by Login/UserName.
+            </summary>
+            <param name="login">Username.</param>
+            <returns>200 - Ok.</returns>
+        </member>
+        <member name="T:TicketManagement.UserAPI.DataAccess.User">
+            <summary>
+            Added more property to default identity user.
+            </summary>
+        </member>
+        <member name="P:TicketManagement.UserAPI.DataAccess.User.FirstName">
+            <summary>
+            FirstName of user.
+            </summary>
+        </member>
+        <member name="P:TicketManagement.UserAPI.DataAccess.User.SurName">
+            <summary>
+            Surname of user.
+            </summary>
+        </member>
+        <member name="P:TicketManagement.UserAPI.DataAccess.User.Language">
+            <summary>
+            Preffered Language.
+            </summary>
+        </member>
+        <member name="P:TicketManagement.UserAPI.DataAccess.User.Balance">
+            <summary>
+            Amount of money.
+            </summary>
+        </member>
+        <member name="T:TicketManagement.UserAPI.DataAccess.UserApiDbContext">
+            <summary>
+            DbContext for working with Identity.
+            </summary>
+        </member>
+        <member name="M:TicketManagement.UserAPI.DataAccess.UserApiDbContext.#ctor(Microsoft.EntityFrameworkCore.DbContextOptions{TicketManagement.UserAPI.DataAccess.UserApiDbContext})">
+            <summary>
+            Initializes a new instance of the <see cref="T:TicketManagement.UserAPI.DataAccess.UserApiDbContext"/> class.
+            </summary>
+            <param name="options">DbContextOptions.</param>
+        </member>
+        <member name="T:TicketManagement.UserAPI.Models.LoginModel">
+            <summary>
+            Login model from UI.
+            </summary>
+        </member>
+        <member name="P:TicketManagement.UserAPI.Models.LoginModel.Login">
+            <summary>
+            Login.
+            </summary>
+        </member>
+        <member name="P:TicketManagement.UserAPI.Models.LoginModel.Password">
+            <summary>
+            Password for authorization.
+            </summary>
+        </member>
+        <member name="P:TicketManagement.UserAPI.Models.ProfileModel.Id">
+            <summary>
+            Unique guid.
+            </summary>
+        </member>
+        <member name="P:TicketManagement.UserAPI.Models.ProfileModel.Login">
+            <summary>
+            Login.
+            </summary>
+        </member>
+        <member name="P:TicketManagement.UserAPI.Models.ProfileModel.Email">
+            <summary>
+            E-mail.
+            </summary>
+        </member>
+        <member name="P:TicketManagement.UserAPI.Models.ProfileModel.FirstName">
+            <summary>
+            FirstName of user.
+            </summary>
+        </member>
+        <member name="P:TicketManagement.UserAPI.Models.ProfileModel.SurName">
+            <summary>
+            Surname of user.
+            </summary>
+        </member>
+        <member name="P:TicketManagement.UserAPI.Models.ProfileModel.Language">
+            <summary>
+            Preffered Language.
+            </summary>
+        </member>
+        <member name="P:TicketManagement.UserAPI.Models.ProfileModel.Balance">
+            <summary>
+            Amount of money.
+            </summary>
+        </member>
+        <member name="P:TicketManagement.UserAPI.Models.ProfileModel.Roles">
+            <summary>
+            Roles of user.
+            </summary>
+        </member>
+        <member name="T:TicketManagement.UserAPI.Models.RegisterModel">
+            <summary>
+            Model from UI.
+            </summary>
+        </member>
+        <member name="P:TicketManagement.UserAPI.Models.RegisterModel.Login">
+            <summary>
+            Login.
+            </summary>
+        </member>
+        <member name="P:TicketManagement.UserAPI.Models.RegisterModel.Email">
+            <summary>
+            E-mail.
+            </summary>
+        </member>
+        <member name="P:TicketManagement.UserAPI.Models.RegisterModel.Password">
+            <summary>
+            Password.
+            </summary>
+        </member>
+        <member name="P:TicketManagement.UserAPI.Models.RegisterModel.FirstName">
+            <summary>
+            FirstName of user.
+            </summary>
+        </member>
+        <member name="P:TicketManagement.UserAPI.Models.RegisterModel.SurName">
+            <summary>
+            Surname of user.
+            </summary>
+        </member>
+        <member name="P:TicketManagement.UserAPI.Models.RegisterModel.Language">
+            <summary>
+            Preffered Language.
+            </summary>
+        </member>
+        <member name="P:TicketManagement.UserAPI.Models.RegisterModel.Balance">
+            <summary>
+            Amount of money.
+            </summary>
+        </member>
+        <member name="T:TicketManagement.UserAPI.Services.JwtTokenService">
+            <summary>
+            Create new token.
+            </summary>
+        </member>
+        <member name="M:TicketManagement.UserAPI.Services.JwtTokenService.#ctor(Microsoft.Extensions.Options.IOptions{TicketManagement.UserAPI.Settings.JwtTokenSettings})">
+            <summary>
+            Initializes a new instance of the <see cref="T:TicketManagement.UserAPI.Services.JwtTokenService"/> class.
+            </summary>
+            <param name="options">JwtTokenSettings.</param>
+        </member>
+    </members>
+</doc>

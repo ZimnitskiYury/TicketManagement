@@ -1,0 +1,75 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net5.0-windows</TargetFramework>
+    <UseWPF>true</UseWPF>
+    <AssemblyName>TicketManagement.DesktopUI</AssemblyName>
+    <Title>Application DesktopUI for TicketManagement project</Title>
+    <PackageId>TicketManagement.DesktopUI</PackageId>
+    <GenerateAssemblyInfo>true</GenerateAssemblyInfo>
+    <PackageTags>UI, desktop, DesktopUI, ticketmanagement</PackageTags>
+    <RepositoryUrl>https://github.com/EPAM-NET-Internal-Lab/YuryZimnitski/tree/master/src/TicketManagement.DesktopUI</RepositoryUrl>
+    <Description>Application DesktopUI for TicketManagement project. Provides access to event, venue and user management.</Description>
+    <IsPackable>true</IsPackable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Content Include="bin\Release\net5.0-windows\publish\**\*">
+      <Pack>true</Pack>
+      <IncludeInPackage>true</IncludeInPackage>
+      <PackagePath>\</PackagePath>
+      <PackageCopyToOutput>true</PackageCopyToOutput>
+    </Content>
+  </ItemGroup>
+  
+  <ItemGroup>
+    <None Remove="Views\logo-horns.png" />
+    <None Remove="Views\prod-1.png" />
+    <None Remove="Views\user-alt-512.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="FontAwesome5" Version="2.0.8" />
+    <PackageReference Include="MaterialDesignThemes" Version="3.2.0" />
+    <PackageReference Include="Microsoft.AspNet.WebApi.Client" Version="5.2.7" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="5.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="5.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Hosting" Version="5.0.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+    <PackageReference Include="Prism.DryIoc" Version="8.0.0.1909" />
+    <PackageReference Include="Syncfusion.Shared.WPF" Version="18.4.0.35" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Views\logo-horns.png" />
+    <Resource Include="Views\prod-1.png" />
+    <Resource Include="Views\user-alt-512.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Fonts\Champagne_Limousines.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Fonts\RobotoCondensed-Regular.ttf" />
+    <Resource Include="Fonts\RobotoCondensed-Bold.ttf" />
+    <Resource Include="Fonts\RobotoCondensed-BoldItalic.ttf" />
+    <Resource Include="Fonts\RobotoCondensed-Italic.ttf" />
+    <Resource Include="Fonts\RobotoCondensed-LightItalic.ttf" />
+    <Resource Include="Fonts\RobotoCondensed-Light.ttf" />
+    <Resource Include="Fonts\Teko-Regular.ttf" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Update="Properties\Settings.Designer.cs">
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Update="appsettings.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+</Project>

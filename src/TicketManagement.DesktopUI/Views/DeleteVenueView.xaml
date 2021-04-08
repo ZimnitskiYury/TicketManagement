@@ -1,0 +1,30 @@
+﻿<UserControl x:Class="TicketManagement.DesktopUI.Views.DeleteVenueView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:prism="http://prismlibrary.com/"             
+             prism:ViewModelLocator.AutoWireViewModel="True"
+             Height="240" Width="460">
+    <Grid>
+        <DockPanel>
+            <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="5">
+                <Button Command="{Binding CloseDialogCommand}" CommandParameter="true" Content="Delete" Margin="10" Style="{StaticResource MaterialDesignRaisedButton}"/>
+                <Button Command="{Binding CloseDialogCommand}" CommandParameter="false" Content="Cancel" Margin="10" Style="{StaticResource MaterialDesignRaisedAccentButton}"/>
+            </StackPanel>
+            <StackPanel Margin="10" HorizontalAlignment="Center">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" Margin="0,10">
+                    <TextBlock Width="100" Text="Description" VerticalAlignment="Center" Margin="20,0"/>
+                    <TextBlock Text="{Binding Venue.Description}" Width="260" Height="25"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" Margin="0,10">
+                    <TextBlock Width="100" Text="Address" VerticalAlignment="Center" Margin="20,0"/>
+                    <TextBlock Text="{Binding Venue.Address}" Width="260" Height="25"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" Margin="0,10">
+                    <TextBlock Width="100" Text="Phone" VerticalAlignment="Center" Margin="20,0"/>
+                    <TextBlock Text="{Binding Venue.Phone}" Width="260" Height="25"/>
+                </StackPanel>
+            </StackPanel>
+        </DockPanel>
+    </Grid>
+</UserControl>

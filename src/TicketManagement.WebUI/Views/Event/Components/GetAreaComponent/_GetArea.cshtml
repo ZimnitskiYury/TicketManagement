@@ -1,0 +1,13 @@
+﻿@using TicketManagement.WebUI.Models.Event
+
+@model IEnumerable<EventAreaViewModel>
+
+<div class="frame-size">
+    <label>Available Areas and prices:</label>
+    <ul>
+        @foreach(var area in Model)
+        {
+        <li id=@area.Id>@area.Description: @area.Price.ToString("C", new System.Globalization.CultureInfo("en-Us"))</li>
+        }      
+    </ul>
+</div>

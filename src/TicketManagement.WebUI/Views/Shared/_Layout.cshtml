@@ -1,0 +1,178 @@
+﻿@using Microsoft.AspNetCore.Mvc.Localization
+@using TicketManagement.WebUI
+@using System.Security.Claims;
+
+@inject IViewLocalizer Localizer
+@inject IHtmlLocalizer<SharedResource> SharedLocalizer
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>@ViewBag.Title - Ticket Management</title>
+    <link rel="shortcut icon" href="~/img/favicon.png">
+    <link rel="stylesheet" href="~/css/animate.css">
+    <link rel="stylesheet" href="~/css/bootstrap-datetimepicker-standalone.css">
+    <link rel="stylesheet" href="~/css/bootstrap-datetimepicker.css">
+    <link rel="stylesheet" href="~/css/bootstrap-datetimepicker.min.css">
+    <link rel="stylesheet" href="~/css/bootstrap-grid.css">
+    <link rel="stylesheet" href="~/css/font-awesome.min.css">
+    <link rel="stylesheet" href="~/css/jquery-ui.css">
+    <link rel="stylesheet" href="~/css/nice-select.css">
+    <link rel="stylesheet" href="~/css/slick.min.css">
+    <link rel="stylesheet" href="~/css/style.css">
+    <script src="~/js/"></script>
+</head>
+<body id="home" class="inner-scroll">
+    <!--================ PRELOADER ================-->
+    <div class="preloader-cover">
+        <div class="preloader">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </div>
+    <!--============== PRELOADER END ==============-->
+    <!-- ================= HEADER ================= -->
+    <header class="header">
+        <div class="top-panel">
+            <div class="container">
+                <div class="top-panel-cover">
+                    <ul class="header-cont">
+                        <li><a href="tel:@SharedLocalizer["Telephone"].Value"><i class="fa fa-phone"></i>@SharedLocalizer["Telephone"]</a></li>
+                        <li><a href="mailto:@SharedLocalizer["E-mail"].Value"><i class="fa fa-envelope" aria-hidden="true"></i>@SharedLocalizer["E-mail"]</a></li>
+                    </ul>
+                    <ul class="icon-right-list">
+                        @if (ViewContext.HttpContext.User.Identity.IsAuthenticated)
+                        {
+                            using (Html.BeginForm("Logout", "Account", FormMethod.Post, new { id = "logoutForm", @class = "icon-right-list" }))
+                            {
+                                @Html.AntiForgeryToken()
+                                <li>
+                                    <a href=@Url.Action("Index", "Profile") id="logged-user">@ViewContext.HttpContext.User.FindFirst(ClaimTypes.Name)?.Value &nbsp;<i class="fa fa-user" aria-hidden="true"></i></a>
+                                </li>
+                                <li>
+                                    <a href="javascript:document.getElementById('logoutForm').submit()">@Localizer["Exit"] &nbsp;<i class="fa fa-sign-out" aria-hidden="true"></i></a>
+                                </li>
+                            }
+
+                        }
+                        else
+                        {
+                            <li><a href=@Url.Action("Login", "Account")>@Localizer["LogIn"]&nbsp;<i class="fa fa-user" aria-hidden="true"></i></a></li>
+                        }
+                        <li><a href=@Url.Action("Favorites", "Cart")>@Localizer["Favorites"]&nbsp;<i class="fa fa-heart" aria-hidden="true"></i></a></li>
+                        <li><a href=@Url.Action("Index", "Cart")>@Localizer["Cart"]&nbsp;<i class="fa fa-shopping-cart" aria-hidden="true"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="header-menu">
+            <div class="container">
+                <a href=@Url.Action("Index", "Home") class="logo"><img src='@Url.Content("~/img/logo-horns.png")' height="69" alt="logo"></a>
+                <nav class="nav-menu">
+                    <ul class="nav-list">
+                        <li id="home">@Html.ActionLink(Localizer["Home"].Value, "Index", "Home")</li>
+                        <li id="events">@Html.ActionLink(Localizer["Events"].Value, "Index", "Event")</li>
+                        <li class="dropdown">
+                            <a>@Localizer["Category"].Value<i class="fa fa-angle-down" aria-hidden="true"></i></a>
+                            <ul>
+                                @foreach (var x in Enum.GetNames(typeof(TicketManagement.WebUI.Models.Event.Category)))
+                                {
+                                    <li><a href=@Url.Action("Category", "Event", new { id = x }) id="@x">@x</a></li>
+                                }
+                            </ul>
+                        </li>
+                        <li id="venues">@Html.ActionLink(Localizer["Venues"].Value, "Index", "Venue")</li>
+                        <li id="contacts">@Html.ActionLink(Localizer["Contacts"].Value, "Contacts", "Home")</li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+    <!-- =============== HEADER END =============== -->
+    <!-- ================ HEADER-TITLE ================ -->
+    <section class="s-header-title">
+        <div class="container">
+            <h2>@ViewBag.Title</h2>
+        </div>
+    </section>
+    <!-- ============== HEADER-TITLE END ============== -->
+    @RenderBody()
+    <!--==================== FOOTER ====================-->
+    <footer>
+        <div class="container">
+            <div class="row footer-item-cover">
+                <div class="footer-subscribe col-md-7 col-lg-8">
+                    <h6>@Localizer["Subscribe"]</h6>
+                    <p>@Localizer["SubscribeText"]</p>
+                    <form class="subscribe-form">
+                        <i class="fa fa-at" aria-hidden="true"></i>
+                        <input class="inp-form" type="email" name="subscribe" placeholder="E-mail">
+                        <button type="submit" class="btn btn-form"><span>@Localizer["Send"]</span></button>
+                    </form>
+                </div>
+                <div class="footer-item col-md-5 col-lg-4">
+                    <h6>@Localizer["Info"]</h6>
+                    <ul class="footer-list">
+                        <li><a href=@Url.Action("Faq", "Home")>@Localizer["FAQ"]</a></li>
+                        <li><a href=@Url.Action("Contacts", "Home")>@Localizer["Contacts"]</a></li>
+                        <li><a href=@Url.Action("Returns", "Home")>@Localizer["Returns"]</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="row footer-item-cover">
+                <div class="footer-touch col-md-7 col-lg-8">
+                    <h6>@Localizer["Social"]</h6>
+                    <ul class="footer-soc social-list">
+                        <li><a target="_blank" href="https://www.facebook.com/"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+                        <li><a target="_blank" href="https://twitter.com/"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+                        <li><a target="_blank" href="https://www.instagram.com/"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
+                        <li><a target="_blank" href="https://www.youtube.com"><i class="fa fa-youtube-play" aria-hidden="true"></i></a></li>
+                    </ul>
+                </div>
+                <div class="footer-item col-md-5 col-lg-4">
+                    <h6>@Localizer["Category"]</h6>
+                    <ul class="footer-list">
+                        @foreach (var x in Enum.GetNames(typeof(TicketManagement.WebUI.Models.Event.Category)))
+                        {
+                            <li><a href=@Url.Action("Category", "Event", new { id = x })>@x</a></li>
+                        }
+                    </ul>
+                </div>
+            </div>
+            <ul class="footer-bottom">
+                <div class="footer-copyright"><a target="_blank" href="https://training.by">Epam</a> © 2020. </div>
+                <ul class="footer-pay">
+                    <li>@Html.ActionLink("Eng", "SetLanguage", "Home", new { culture = "en", returnUrl = Context.Request.Path }, null)</li>
+                    <li>@Html.ActionLink("Rus", "SetLanguage", "Home", new { culture = "ru", returnUrl = Context.Request.Path }, null)</li>
+                    <li>@Html.ActionLink("Blr", "SetLanguage", "Home", new { culture = "be", returnUrl = Context.Request.Path }, null)</li>
+                </ul>
+                <ul class="footer-pay">
+                    <li><a href="#"><img src="~/img/footer-pay-1.png" alt="img"></a></li>
+                    <li><a href="#"><img src="~/img/footer-pay-2.png" alt="img"></a></li>
+                    <li><a href="#"><img src="~/img/footer-pay-3.png" alt="img"></a></li>
+                    <li><a href="#"><img src="~/img/footer-pay-4.png" alt="img"></a></li>
+                </ul>
+            </ul>
+        </div>
+    </footer>
+    <script src="~/js/jquery-2.2.4.min.js"></script>
+    <script src="~/js/jquery-ui.js"></script>
+    <script src="~/js/jquery.fancybox.js"></script>
+    <script src="~/js/jquery.nice-select.js"></script>
+    <script src="~/js/jquery.validate.js"></script>
+    <script src="~/js/jquery.validate.min.js"></script>
+    <script src="~/js/jquery.validate.unobtrusive.min.js"></script>
+    <script src="~/js/moment.js"></script>
+    <script src="~/js/bootstrap-datetimepicker.min.js"></script>
+    <script src="~/js/isotope.pkgd.js"></script>
+    <script src="~/js/lazyload.min.js"></script>
+    <script src="~/js/scripts.min.js"></script>
+    <script src="~/js/slick.min.js"></script>
+    <script src="~/js/wow.js"></script>
+    <script src="~/js/scripts.js"></script>
+    @RenderSection("scripts", required: false)
+</body>
+</html>

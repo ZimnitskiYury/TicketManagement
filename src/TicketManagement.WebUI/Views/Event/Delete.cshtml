@@ -1,0 +1,34 @@
+﻿@using TicketManagement.WebUI.Models.Event
+@using Microsoft.AspNetCore.Mvc.Localization
+@using TicketManagement.WebUI
+
+@model EventDataViewModel
+@inject IViewLocalizer Localizer
+@inject IHtmlLocalizer<SharedResource> SharedLocalizer
+
+@{
+    ViewBag.Title = SharedLocalizer["Delete"];
+}
+
+<div class="login-form">
+    <div class="container">
+        <div class="col-md-6">
+            <section>
+                @using (Html.BeginForm())
+                {
+                    <div> <h5>@Localizer["SubmitDelete"] @Model.Name ?</h5></div>
+                    @Html.HiddenFor(Model => Model.Id)
+                    @Html.HiddenFor(Model => Model.Name)
+                    @Html.HiddenFor(Model => Model.Description)
+                    @Html.HiddenFor(Model => Model.LayoutId)
+                    @Html.HiddenFor(Model => Model.Category)
+                    @Html.HiddenFor(Model => Model.StartDateTime)
+                    @Html.HiddenFor(Model => Model.EndDateTime)
+                    <div class="col-md-offset-2 col-md-10">
+                        <button type="submit" href class="btn btn-form"><span>@SharedLocalizer["Delete"]</span></button>
+                    </div>
+                }
+            </section>
+        </div>
+    </div>
+</div>
